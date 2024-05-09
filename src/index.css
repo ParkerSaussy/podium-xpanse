@@ -1,9 +1,17 @@
+/* Grabbed these colors from the website - extracted hex values from a screenshot */
+:root {
+  --xpanse-primary: #5166FE;
+  --xpanse-black: #04023C;
+  --xpanse-gray: #F5F5F5;
+  --xpanse-white: #FFFFFF;
+}
+
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Using Roboto to support material UI */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background-color: var(--xpanse-white);
 }
 
 code {
