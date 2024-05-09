@@ -1,5 +1,7 @@
 
 export interface FormConfig {
+    id?: string;
+    name: string;
     fields: Array<
         TextInputField | 
         NumberInputField | 

@@ -26,7 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<FormListPage />} />
             <Route path="/form-builder" element={<FormBuilderPage />} />
-            <Route path="/form/:formId" element={<FormViewerPage />} />
+            <Route path="/form-viewer/:formId" element={<FormViewerPage />} />
           </Routes>
         </div>
       </ThemeProvider>

@@ -1,0 +1,30 @@
+.rendered-forms-subspace {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+
+.no-forms-msg {
+    font-style: italic;
+}
+
+.form-rendered-item {
+    background-color: var(--xpanse-white);
+    padding: 15px;
+    border-radius: 5px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-name {
+    display: flex;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    height: 100%;
+}
