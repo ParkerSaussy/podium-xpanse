@@ -1,5 +1,5 @@
 import styles from './RenderForms.module.css';
-import { FormConfig } from "../lib/types";
+import { FormConfig } from "../lib/interfaces";
 import { Button } from '@mui/material';
 
 export default function RenderForms({ forms }: { forms: FormConfig[] }) {

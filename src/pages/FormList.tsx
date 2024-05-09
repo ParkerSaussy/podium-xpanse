@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FormConfig } from '../lib/types';
+import { FormConfig } from '../lib/interfaces';
 import axios from 'axios';
 
 import styles from './FormList.module.css';

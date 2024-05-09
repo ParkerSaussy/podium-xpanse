@@ -20,6 +20,8 @@ export interface FormField {
     id: string;
     label: string;
     required: boolean;
+    type: string;
+    placeholder?: string; // Only applicable for text inputs which might use it. Others will use default
 };
 
 export interface TextInputField extends FormField {

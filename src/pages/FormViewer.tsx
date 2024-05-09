@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 import axios from 'axios';
 
-import { FormConfig } from '../lib/types';
+import { FormConfig } from '../lib/interfaces';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import FieldRenderer from './FormViewer/FieldRenderer';
 import styles from './FormViewer.module.css';
 
 export default function FormViewerPage() {
@@ -39,7 +41,7 @@ export default function FormViewerPage() {
     return (
         <>
             <BackButton href={'/'} />
-            <div className="page-centered">
+            <div className={`page-centered ${styles['form-viewer-fullpage']}`}>
                 {/* Loading, no form or error yet */}
                 {(!form && !formError) && <Spinner size='large' />}
                 {/* Form failed to load */}
@@ -47,8 +49,20 @@ export default function FormViewerPage() {
                 {/* Form loaded */}
                 {form && !formError && (
                     <div className={styles['form-container']}>
+                        {/* Form Header */}
                         <h1>{`${form.name}:`}</h1>
-                        
+                        <hr className={styles['divider']} />
+                        {/* 
+                        Form Fields.
+
+                        Field data is passed field-by-field to the FieldRenderer component, whereafter it is past based on type.
+                        */}
+                        {form.fields.map((field, index) => <FieldRenderer key={index} field={field} /> )}
+                        <hr className={styles['divider']} />
+                        {/* Submit Button */}
+                        <div>
+                            <Button variant="contained" size="large" color="primary">Submit Form</Button>
+                        </div>
                     </div>
                 )}
             </div>

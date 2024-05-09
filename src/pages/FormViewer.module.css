@@ -3,6 +3,21 @@
 
 .form-container {
     animation: fadeIn 0.5s;
+    width: 100%;
+}
+
+.form-viewer-fullpage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    animation: fadeIn 0.5s;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--xpanse-gray);
 }
 
 /* Keyframes for fading */
