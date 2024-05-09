@@ -6,11 +6,13 @@ let smallSpinner = {
 }
 
 let largeSpinner = {
-    width: '100px', height: '100px', borderWidth: '15px'
+    width: '120px', height: '120px', borderWidth: '18px'
 }
 
 export default function Spinner({ size }: { size?: 'small' | 'large' }) {
     return (
-        <div style={size === 'large' ? largeSpinner:smallSpinner} className={styles['spinner']} />
+        <>
+            <div style={size === 'large' ? largeSpinner:smallSpinner} className={styles['spinner']} />
+        </>
     );
 }

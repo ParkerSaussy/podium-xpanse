@@ -23,10 +23,14 @@ export default function FormListPage() {
             All this ultimately is is a single object w/ Field data.
             In the wild, naturally, this would be a real API call.
             */
-            const response = await axios.get('https://663c49b117145c4d8c35b024.mockapi.io/forms')
-            if (response.data && response.status === 200) {
-                setForms(response.data)
-            } else {
+            try {
+                const response = await axios.get('https://663c49b117145c4d8c35b024.mockapi.io/forms')
+                if (response.data && response.status === 200) {
+                    setForms(response.data)
+                } else {
+                    setFormsError('Failed to load forms.')
+                }
+            } catch {
                 setFormsError('Failed to load forms.')
             }
         }

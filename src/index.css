@@ -12,6 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--xpanse-white);
+  transition: 0.3s ease;
 }
 
 code {

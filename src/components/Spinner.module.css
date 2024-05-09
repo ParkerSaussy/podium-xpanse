@@ -3,7 +3,7 @@ Separated border params so that I could concatenate styles for larger & smaller 
 */
 .spinner {
     border-style: solid;
-    border-color: var(--xpanse-white);
+    border-color: var(--xpanse-gray);
     border-bottom-color: var(--xpanse-primary);
     border-radius: 50%;
     display: inline-block;

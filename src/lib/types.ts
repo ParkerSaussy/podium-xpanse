@@ -1,6 +1,6 @@
 
 export interface FormConfig {
-    id?: string;
+    id: string;
     name: string;
     fields: Array<
         TextInputField | 

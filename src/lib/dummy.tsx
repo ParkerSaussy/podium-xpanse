@@ -2,6 +2,7 @@ import { FormConfig } from "./types"
 
 /* Dummy File to help w/ Type Testing and Debugging */
 export const DummyFile: FormConfig = {
+    id: 'whatever',
     name: 'Dummy Form',
     fields: [
         {
