@@ -20,7 +20,7 @@ export default function FormViewerPage() {
             /* 
             MockAPI.io yet again...
             We take the formId and retrieve a single form from the DB
-            Thought about passing the form as a prop but wanted to minimize data being passed around thru props.
+            Thought about passing the form as a prop but wanted to minimize that.
             */
             try {
                 const response = await axios.get(`https://663c49b117145c4d8c35b024.mockapi.io/forms/${formId}`);
@@ -45,7 +45,12 @@ export default function FormViewerPage() {
                 {/* Form failed to load */}
                 {formError && <div>{formError}</div>}
                 {/* Form loaded */}
-
+                {form && !formError && (
+                    <div className={styles['form-container']}>
+                        <h1>{`${form.name}:`}</h1>
+                        
+                    </div>
+                )}
             </div>
         </>
     );
