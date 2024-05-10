@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import axios from 'axios';
@@ -10,13 +10,26 @@ import FieldRenderer from './FormViewer/FieldRenderer';
 import styles from './FormViewer.module.css';
 
 export default function FormViewerPage() {
+    const results = useRef<any>({});
     const [form, setForm] = useState<FormConfig | null>(null);
     const [formError, setFormError] = useState<string | null>(null);
 
     // Retrieve our formId from the 
     const params = useParams();
     const formId = params?.formId;
+
+    // Initialize the results object with default values
+    useEffect(() => {
+        if (form) {
+            let newResults = results.current;
+            form.fields.forEach(field => {
+                newResults[field.id] = field.defaultValue || null;
+            })
+            results.current = newResults;
+        }
+    }, [form]);
     
+    // Retrieve the form object from the API
     useEffect(() => {
         const getData = async () => {
             /* 
@@ -38,9 +51,14 @@ export default function FormViewerPage() {
         getData();
     }, [formId]);
 
-    /* Function to update a results object based on data */
+    /* 
+    Single master function to update a results object based on data AS it is entered across every component 
+
+    Handy since now we can use a single function to update the results object across all components.
+    */
     const updateResults = (fieldId: string, value: any) => {
-        console.log(`Field ${fieldId} updated with value: ${value.toString()}`)
+        let newResults = results.current;
+        results.current = { ...newResults, [fieldId]: value }
     }
 
     /* 
@@ -49,9 +67,11 @@ export default function FormViewerPage() {
     */
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
-        console.log(form?.fields)
+        // Validation Phase
+        
 
-        console.log('Form submitted!');
+
+        console.log(results.current)
     }
 
     return (

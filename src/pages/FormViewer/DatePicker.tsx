@@ -3,12 +3,17 @@ import { DatePicker as MUIDatePicker } from "@mui/x-date-pickers"
 import dayjs from "dayjs"
 
 export default function DatePicker({ field, updateResults }: { field: DateInputField, updateResults: (id: string, value: any) => void }) {
+    const onChangeDate = (e: dayjs.Dayjs | null) => {
+        const formatted = e?.format('MM-DD-YYYY') || null;
+        if (formatted) updateResults(field.id, formatted);
+    }
+
     return (
         <div>
             <MUIDatePicker 
                 label={field.label} 
-                onChange={(e) => { console.log(e) }}
-                defaultValue={dayjs()} 
+                onChange={(e: dayjs.Dayjs | null) => onChangeDate(e) }
+                // defaultValue={dayjs()} // Open this up later maybe
                 slotProps={{
                     textField: {
                         required: field.required,

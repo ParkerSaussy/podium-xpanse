@@ -6,16 +6,18 @@ import {
     MenuItem, 
     Select, 
     InputLabel, 
-    FormHelperText 
+    FormHelperText, 
+    SelectChangeEvent
 } from "@mui/material";
 
 export default function SelectInput({ field, updateResults }: { field: SelectInputField, updateResults: (id: string, value: any) => void }) {
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState('');
 
-    const onSelectOption = (e: any) => {
+    const onSelectOption = (e: SelectChangeEvent) => {
         const value = e.target.value;
-        console.log(value)
-        setValue(value)
+        // First update the results in the parent component, then update the local state
+        updateResults(field.id, field.options.find(option => option.id === value));
+        setValue(value);
     }
 
     return (
@@ -28,7 +30,7 @@ export default function SelectInput({ field, updateResults }: { field: SelectInp
                 required={field.required}
                 displayEmpty
                 label={field.label}
-                onChange={(e) => onSelectOption(e)}
+                onChange={(e: SelectChangeEvent) => onSelectOption(e)}
                 fullWidth
             >
                 <MenuItem value="" disabled>{field.placeholder || 'Select an option...'}</MenuItem>

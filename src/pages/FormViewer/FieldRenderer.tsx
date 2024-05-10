@@ -28,14 +28,19 @@ export default function FieldRenderer({ field, updateResults }: { field: FormFie
         Will add a checker function later on, time permitting.
         */
         switch (type) {
+            /* TEXT ENTRY - TextInput */
             case 'text': 
                 return (<TextInput field={field as TextInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+            /* NUMBER ENTRY - NumberInput */
             case 'number':
                 return (<NumberInput field={field as NumberInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+            /* CHECKBOXES (0+) - Checkbox */
             case 'checkbox':
                 return (<Checkbox field={field as CheckboxField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+            /* SELECT (1 of many) - SelectInput */
             case 'select':
                 return (<SelectInput field={field as SelectInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+            /* DATE - DatePicker */
             case 'date':
                 return (<DatePicker field={field as DateInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             default:
