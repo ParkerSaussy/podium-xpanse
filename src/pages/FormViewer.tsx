@@ -10,9 +10,10 @@ import Spinner from '../components/Spinner';
 import FieldRenderer from './FormViewer/FieldRenderer';
 import styles from './FormViewer.module.css';
 
+import { validateFieldEntry } from '../lib/validation';
+
 export default function FormViewerPage() {
     const results = useRef<any>({});
-    // const [results, setResults] = useState<any>({});
     const [form, setForm] = useState<FormConfig | null>(null);
     const [formError, setFormError] = useState<string | null>(null);
     const [showJson, setShowJson] = useState<boolean>(false);
@@ -76,6 +77,7 @@ export default function FormViewerPage() {
 
 
         console.log(results.current)
+        return
         setShowJson(true);
     }
 
@@ -104,6 +106,7 @@ export default function FormViewerPage() {
                     </Box>
                 )}
             </Box>
+            {/* JSON Display Space */}
             {showJson && (
                 <Box className={styles['json-space']}>
                     <JSONPretty id="json-pretty" data={results.current}></JSONPretty>

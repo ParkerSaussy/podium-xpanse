@@ -52,6 +52,7 @@ export default function FormListPage() {
             <hr className={styles['divider']} />
             <section className={styles['forms-list-new-forms-section']}>
                 <Button disabled variant="contained" href="/form-builder">Create New Form</Button>
+                <small>{`Initially I'd wanted to have a form creator in addition to the validator, but didn't have time. Next time!`}</small>
             </section>
         </div>
     );

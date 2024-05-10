@@ -34,6 +34,18 @@
     box-shadow: 0 0 10px 0 var(--xpanse-gray);
 }
 
+.forms-list-new-forms-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    font-weight: 400;
+    font-style: italic;
+}
+
 /* Keyframes for fading */
 
 @keyframes fadeIn {

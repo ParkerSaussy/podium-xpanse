@@ -6,7 +6,6 @@ We can use these throughout the app to control inputs, parameters, and validatio
 export interface FormConfig {
     id: string;
     name: string;
-    instructions?: string;
     fields: Array<
         TextInputField | 
         NumberInputField | 
