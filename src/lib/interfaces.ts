@@ -32,45 +32,46 @@ export interface FormField {
 export interface TextInputField extends FormField {
     type: 'text';
     defaultValue?: string;
-    validator?: object;
+    validator?: Validator;
 }
 
 export interface NumberInputField extends FormField {
     type: 'number';
     defaultValue?: number;
-    validator?: object;
+    validator?: Validator;
 }
 
 export interface CheckboxField extends FormField {
     type: 'checkbox';
     defaultValue?: string[] | null;
     options: SelectorOption[];
-    validator?: object;
+    validator?: Validator;
 }
 
 export interface SelectInputField extends FormField {
     type: 'select';
     defaultValue?: string;
     options: SelectorOption[];
-    validator?: object;
+    validator?: Validator;
 }
 
 export interface DateInputField extends FormField {
     type: 'date';
     defaultValue?: string;
-    validator?: object;
+    validator?: Validator;
 }
 
 // This will just never be used - was planning on it but never got to it.
 export interface FieldArrayInput extends FormField {
     type: 'fieldArray';
     defaultValue?: Array<string>;
-    validator?: object;
+    validator?: Validator;
 }
 
 /* Other Types */
 
+// For Validators, I'm using the same general structure I used at Heali.
+// The idea here is to nest several language-agnostic expressions that can be used to generate a boolean response.
 export interface Validator {
-    expression: object;
-    message: string;
+    expression: Array<object>;
 }

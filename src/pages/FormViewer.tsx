@@ -10,7 +10,7 @@ import Spinner from '../components/Spinner';
 import FieldRenderer from './FormViewer/FieldRenderer';
 import styles from './FormViewer.module.css';
 
-import { validateFieldEntry } from '../lib/validation';
+import { validateFields } from '../lib/validation';
 
 export default function FormViewerPage() {
     const results = useRef<{ [key: string]: any }>({}); // Wish we didn't have to use any here but as of making this I haven't confirmed the returned types yet
@@ -48,6 +48,8 @@ export default function FormViewerPage() {
             try {
                 const response = await axios.get(`https://663c49b117145c4d8c35b024.mockapi.io/forms/${formId}`);
                 if (response.data && response.status === 200) {
+                    // Use this for testing!
+                    console.log('FORM:', response.data) 
                     setForm(response.data)
                 } else {
                     setFormError('Failed to load form.')
@@ -70,16 +72,17 @@ export default function FormViewerPage() {
     }
 
     /* 
-    Elected to handle all validation in this function.
+    Elected to handle all validation in this one function when the user hits submit
     Using zero of the html form validation tools.
     */
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (!form || !results) return
+
         // Validation Phase
-        
+        let validation = validateFields(results.current, form)
+        setFieldErrors(validation);
 
-
-        console.log(results.current)
         return
         setShowJson(true);
     }

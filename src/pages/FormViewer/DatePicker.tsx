@@ -13,20 +13,20 @@ export default function DatePicker({ field, error, updateResults }: {
     }
 
     return (
-        <div>
-            <MUIDatePicker 
-                label={field.label} 
-                onChange={(e: dayjs.Dayjs | null) => onChangeDate(e) }
-                // defaultValue={dayjs()} // Open this up later maybe
-                slotProps={{
-                    textField: {
-                        required: field.required,
-                        ...((field.errorMsg && error) && { 
-                            helperText: field.errorMsg 
-                        })
-                    }
-                }} 
-            />
-        </div>
+        <MUIDatePicker 
+            label={field.label} 
+            onChange={(e: dayjs.Dayjs | null) => onChangeDate(e) }
+            // defaultValue={dayjs()} // Open this up later maybe
+            slotProps={{
+                textField: {
+                    required: field.required,
+                    ...((field.errorMsg && error) && { 
+                        helperText: field.errorMsg,
+                        error: true
+                    })
+                }
+            }}
+            sx={{ width: 'fit-content', textAlign: 'left'}}
+        /> 
     )
 }

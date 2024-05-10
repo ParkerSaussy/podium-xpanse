@@ -14,12 +14,13 @@ export default function TextInput({ field, error, updateResults }: {
 
     return (
         <TextField
-            label={field.label} 
+            label={field.label}
             InputLabelProps={{ shrink: true }}
             variant="outlined"
             placeholder={field.placeholder || 'Enter text...'}
             fullWidth
-            color={error ? "error":"primary"}
+            color="primary"
+            error={error}
             required={field.required} 
             defaultValue={field.defaultValue}
             helperText={error ? (field.errorMsg || null): null}

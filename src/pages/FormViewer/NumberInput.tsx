@@ -19,7 +19,8 @@ export default function NumberInput({ field, error, updateResults }: {
             variant="outlined"
             placeholder={field.placeholder || 'Enter a number...'}
             fullWidth
-            color={error ? "error":"primary"}
+            color="primary"
+            error={error}
             required={field.required} 
             defaultValue={field.defaultValue} 
             inputProps={{ type: 'number' }}

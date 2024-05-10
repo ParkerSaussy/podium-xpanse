@@ -33,6 +33,7 @@ export default function SelectInput({ field, error, updateResults }: {
                 value={value}
                 required={field.required}
                 displayEmpty
+                error={error}
                 label={field.label}
                 color={error ? "error":"primary"}
                 onChange={(e: SelectChangeEvent) => onSelectOption(e)}
