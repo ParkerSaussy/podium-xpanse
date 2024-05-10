@@ -5,7 +5,8 @@ import {
     FormGroup, 
     FormControl, 
     FormControlLabel, 
-    FormLabel 
+    FormLabel, 
+    FormHelperText
 } from "@mui/material";
 
 export default function Checkbox({ field }: { field: CheckboxField}) {
@@ -17,12 +18,13 @@ export default function Checkbox({ field }: { field: CheckboxField}) {
                     <FormControlLabel
                         key={index}
                         control={
-                            <MUICheckbox color="primary" />
+                            <MUICheckbox color="primary"/>
                         }
                         label={option.label}
                     />
                 ))}
             </FormGroup>
+            {field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>}
         </FormControl>
     )
 }

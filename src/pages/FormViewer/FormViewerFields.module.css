@@ -13,17 +13,10 @@
     transition: 0.3s ease;
 }
 
-.mui-input {
+.field-renderer input {
     background-color: var(--xpanse-white);
+} 
+
+.field-renderer select option {
+    background-color: var(--xpanse-white) !important;
 }
-
-/* Text Input */
-
-
-/* Number Input */
-
-/* Checkbox */
-
-/* Select Input */
-
-/* Date Picker */

@@ -1,3 +1,6 @@
+import styles from './FormViewerFields.module.css'
+
+// Types/Interfaces
 import { 
     FormField,
     TextInputField, 
@@ -6,7 +9,6 @@ import {
     SelectInputField, 
     DateInputField 
 } from "../../lib/interfaces"
-import styles from './FormViewerFields.module.css'
 
 // Fields to be Rendered
 import TextInput from "./TextInput";
@@ -14,6 +16,9 @@ import NumberInput from "./NumberInput";
 import Checkbox from "./Checkbox";
 import SelectInput from "./SelectInput";
 import DatePicker from "./DatePicker";
+
+// MUI
+import { Box } from "@mui/material";
 
 export default function FieldRenderer({field}: {field: FormField }) {
     const getFieldComponent = (type: string) => {
@@ -40,8 +45,8 @@ export default function FieldRenderer({field}: {field: FormField }) {
     }
 
     return (
-        <div className={`${styles['field-renderer']}`}>
+        <Box className={`${styles['field-renderer']}`}>
             {getFieldComponent(field.type)}
-        </div>
+        </Box>
     )
 }

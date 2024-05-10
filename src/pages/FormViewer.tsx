@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import axios from 'axios';
 
 import { FormConfig } from '../lib/interfaces';
@@ -38,9 +38,13 @@ export default function FormViewerPage() {
         getData();
     }, [formId]);
 
+    /* 
+    Elected to handle all validation in this function.
+    Using zero of the html form validation tools.
+    */
     const onSubmit = (event: FormEvent) => {
-        // Form submission logic here
         event.preventDefault();
+
         console.log('Form submitted!');
     }
 
@@ -54,22 +58,14 @@ export default function FormViewerPage() {
                 {formError && <div>{formError}</div>}
                 {/* Form loaded */}
                 {form && !formError && (
-                    <form onSubmit={onSubmit} className={styles['form-container']}>
+                    <Box component="form" noValidate onSubmit={onSubmit} className={styles['form-container']}>
                         {/* Form Header */}
                         <h1>{`${form.name}:`}</h1>
-                        <hr className={styles['divider']} />
-                        {/* 
-                        Form Fields.
-
-                        Field data is passed field-by-field to the FieldRenderer component, whereafter it is past based on type.
-                        */}
+                        {/* Form Field data is passed field-by-field to the FieldRenderer component, whereafter it is past based on type. */}
                         {form.fields.map((field, index) => <FieldRenderer key={index} field={field} /> )}
-                        <hr className={styles['divider']} />
                         {/* Submit Button */}
-                        <div>
-                            <Button type='submit' variant="contained" size="large" color="primary">Submit Form</Button>
-                        </div>
-                    </form>
+                        <Button type='submit' variant="contained" size="large" color="primary">Submit Form</Button>
+                    </Box>
                 )}
             </div>
         </>

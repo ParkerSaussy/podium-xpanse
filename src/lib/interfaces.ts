@@ -26,22 +26,20 @@ export interface FormField {
     label: string;
     required: boolean;
     type: string;
-    helperText?: string;
     placeholder?: string;
+    errorMsg?: string;
 };
 
 export interface TextInputField extends FormField {
     type: 'text';
     defaultValue?: string;
     validator?: object;
-    // value?: string;
 }
 
 export interface NumberInputField extends FormField {
     type: 'number';
     defaultValue?: number;
     validator?: object;
-    // value?: number;
 }
 
 export interface CheckboxField extends FormField {
@@ -49,20 +47,17 @@ export interface CheckboxField extends FormField {
     defaultValue?: string[] | null;
     options: SelectorOption[];
     validator?: object;
-    // value?: string[];
 }
 
 export interface SelectInputField extends FormField {
     type: 'select';
     options: SelectorOption[];
     validator?: object;
-    // value?: string;
 }
 
 export interface DateInputField extends FormField {
     type: 'date';
     validator?: object;
-    // value?: Date;
 }
 
 export interface FieldArrayInput extends FormField {

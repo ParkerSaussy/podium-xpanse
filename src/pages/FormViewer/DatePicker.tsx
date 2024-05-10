@@ -10,12 +10,8 @@ export default function DatePicker({ field }: { field: DateInputField }) {
                 // defaultValue={dayjs()} 
                 slotProps={{
                     textField: {
-                        ...(
-                            field.helperText && {
-                                helperText: field.helperText
-                            }
-                        ),
                         required: field.required,
+                        ...(field.errorMsg && { helperText: field.errorMsg })
                     }
                 }} 
             />

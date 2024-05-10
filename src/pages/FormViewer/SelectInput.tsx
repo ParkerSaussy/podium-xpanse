@@ -1,8 +1,13 @@
-import styles from './FormViewerFields.module.css';
 import { useState } from "react";
 import { SelectInputField } from "../../lib/interfaces";
 
-import { FormControl, MenuItem, Select, InputLabel } from "@mui/material";
+import { 
+    FormControl, 
+    MenuItem, 
+    Select, 
+    InputLabel, 
+    FormHelperText 
+} from "@mui/material";
 
 export default function SelectInput({ field }: { field: SelectInputField }) {
     const [value, setValue] = useState('')
@@ -11,7 +16,6 @@ export default function SelectInput({ field }: { field: SelectInputField }) {
         <FormControl>
             <InputLabel shrink id="demo-simple-select-label">{field.label}</InputLabel>
             <Select
-                className={styles['mui-input']}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={value}
@@ -26,6 +30,7 @@ export default function SelectInput({ field }: { field: SelectInputField }) {
                     <MenuItem key={index} value={option.id}>{option.label}</MenuItem>
                 ))}
             </Select>
+            {field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>}
         </FormControl>
     )
 }
