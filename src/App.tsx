@@ -21,6 +21,15 @@ const theme = createTheme({
     error: {
       main: '#CB0000',
     }
+  },
+  components: {
+    MuiFormHelperText: {
+      styleOverrides: {
+          root: {
+            color: "#CB0000"
+          }
+      }
+    }
   }
 });
 

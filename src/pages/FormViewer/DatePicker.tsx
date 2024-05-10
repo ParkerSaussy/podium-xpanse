@@ -11,7 +11,9 @@ export default function DatePicker({ field }: { field: DateInputField }) {
                 slotProps={{
                     textField: {
                         required: field.required,
-                        ...(field.errorMsg && { helperText: field.errorMsg })
+                        ...(field.errorMsg && { 
+                            helperText: field.errorMsg 
+                        })
                     }
                 }} 
             />
