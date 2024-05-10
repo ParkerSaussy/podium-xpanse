@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import axios from 'axios';
+import JSONPretty from 'react-json-pretty';
 
 import { FormConfig } from '../lib/interfaces';
 import BackButton from '../components/BackButton';
@@ -11,8 +12,10 @@ import styles from './FormViewer.module.css';
 
 export default function FormViewerPage() {
     const results = useRef<any>({});
+    // const [results, setResults] = useState<any>({});
     const [form, setForm] = useState<FormConfig | null>(null);
     const [formError, setFormError] = useState<string | null>(null);
+    const [showJson, setShowJson] = useState<boolean>(false);
 
     // Retrieve our formId from the 
     const params = useParams();
@@ -21,6 +24,7 @@ export default function FormViewerPage() {
     // Initialize the results object with default values
     useEffect(() => {
         if (form) {
+            // let newResults = results.current;
             let newResults = results.current;
             form.fields.forEach(field => {
                 newResults[field.id] = field.defaultValue || null;
@@ -72,6 +76,7 @@ export default function FormViewerPage() {
 
 
         console.log(results.current)
+        setShowJson(true);
     }
 
     return (
@@ -99,6 +104,11 @@ export default function FormViewerPage() {
                     </Box>
                 )}
             </Box>
+            {showJson && (
+                <Box className={styles['json-space']}>
+                    <JSONPretty id="json-pretty" data={results.current}></JSONPretty>
+                </Box>)
+            }
         </>
     );
 }

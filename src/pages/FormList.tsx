@@ -51,7 +51,7 @@ export default function FormListPage() {
             {/* Add New Forms Section */}
             <hr className={styles['divider']} />
             <section className={styles['forms-list-new-forms-section']}>
-                <Button variant="contained" href="/form-builder">Create New Form</Button>
+                <Button disabled variant="contained" href="/form-builder">Create New Form</Button>
             </section>
         </div>
     );
