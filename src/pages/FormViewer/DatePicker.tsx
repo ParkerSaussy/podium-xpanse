@@ -16,7 +16,6 @@ export default function DatePicker({ field, error, updateResults }: {
         <MUIDatePicker 
             label={field.label} 
             onChange={(e: dayjs.Dayjs | null) => onChangeDate(e) }
-            // defaultValue={dayjs()} // Open this up later maybe
             slotProps={{
                 textField: {
                     required: field.required,

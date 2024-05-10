@@ -82,9 +82,14 @@ export default function FormViewerPage() {
         // Validation Phase
         let validation = validateFields(results.current, form)
         setFieldErrors(validation);
+        let success = !Object.values(validation).includes(true);
 
-        return
-        setShowJson(true);
+        // return
+        if (success) {
+            setShowJson(true);
+        } else {
+            return
+        }
     }
 
     return (
