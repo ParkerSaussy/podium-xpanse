@@ -1,7 +1,12 @@
+/* 
+Extract all types and set them up as interfaces to allow extension.
+We can use these throughout the app to control inputs, parameters, and validation.
+*/
 
 export interface FormConfig {
     id: string;
     name: string;
+    instructions?: string;
     fields: Array<
         TextInputField | 
         NumberInputField | 
@@ -21,13 +26,14 @@ export interface FormField {
     label: string;
     required: boolean;
     type: string;
-    placeholder?: string; // Only applicable for text inputs which might use it. Others will use default
+    helperText?: string;
 };
 
 export interface TextInputField extends FormField {
     type: 'text';
     defaultValue?: string;
     validator?: object;
+    placeholder?: string;
     value?: string;
 }
 
@@ -35,6 +41,7 @@ export interface NumberInputField extends FormField {
     type: 'number';
     defaultValue?: number;
     validator?: object;
+    placeholder?: string;
     value?: number;
 }
 
