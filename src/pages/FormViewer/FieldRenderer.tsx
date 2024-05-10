@@ -20,7 +20,11 @@ import DatePicker from "./DatePicker";
 // MUI
 import { Box } from "@mui/material";
 
-export default function FieldRenderer({ field, updateResults }: { field: FormField, updateResults: (id: string, value: any) => void }) {
+export default function FieldRenderer({ field, fieldErrors, updateResults }: { 
+    field: FormField, 
+    fieldErrors: { [key: string]: boolean }, 
+    updateResults: (id: string, value: any) => void 
+}) {
     const getFieldComponent = (type: string) => {
         /* 
         It's safe to do these so long as the types match, which they always should unless somebody corrupts the DB 
@@ -30,19 +34,44 @@ export default function FieldRenderer({ field, updateResults }: { field: FormFie
         switch (type) {
             /* TEXT ENTRY - TextInput */
             case 'text': 
-                return (<TextInput field={field as TextInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+                return (
+                    <TextInput 
+                        field={field as TextInputField}
+                        error={fieldErrors[field.id]}
+                        updateResults={(id: string, value: any) => updateResults(id, value)} 
+                    />)
             /* NUMBER ENTRY - NumberInput */
             case 'number':
-                return (<NumberInput field={field as NumberInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+                return (
+                    <NumberInput 
+                        field={field as NumberInputField}
+                        error={fieldErrors[field.id]}
+                        updateResults={(id: string, value: any) => updateResults(id, value)} 
+                    />)
             /* CHECKBOXES (0+) - Checkbox */
             case 'checkbox':
-                return (<Checkbox field={field as CheckboxField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+                return (
+                    <Checkbox 
+                        field={field as CheckboxField}
+                        error={fieldErrors[field.id]}
+                        updateResults={(id: string, value: any) => updateResults(id, value)} 
+                    />)
             /* SELECT (1 of many) - SelectInput */
             case 'select':
-                return (<SelectInput field={field as SelectInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+                return (
+                    <SelectInput 
+                        field={field as SelectInputField}
+                        error={fieldErrors[field.id]}
+                        updateResults={(id: string, value: any) => updateResults(id, value)} 
+                    />)
             /* DATE - DatePicker */
             case 'date':
-                return (<DatePicker field={field as DateInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
+                return (
+                    <DatePicker 
+                        field={field as DateInputField}
+                        error={fieldErrors[field.id]}
+                        updateResults={(id: string, value: any) => updateResults(id, value)} 
+                    />)
             default:
                 console.error(`Field type ${type} not found`);
                 return <></>

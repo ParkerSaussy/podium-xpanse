@@ -10,7 +10,11 @@ import {
     SelectChangeEvent
 } from "@mui/material";
 
-export default function SelectInput({ field, updateResults }: { field: SelectInputField, updateResults: (id: string, value: any) => void }) {
+export default function SelectInput({ field, error, updateResults }: { 
+    field: SelectInputField, 
+    error?: boolean, 
+    updateResults: (id: string, value: any) => void 
+}) {
     const [value, setValue] = useState('');
 
     const onSelectOption = (e: SelectChangeEvent) => {
@@ -30,6 +34,7 @@ export default function SelectInput({ field, updateResults }: { field: SelectInp
                 required={field.required}
                 displayEmpty
                 label={field.label}
+                color={error ? "error":"primary"}
                 onChange={(e: SelectChangeEvent) => onSelectOption(e)}
                 fullWidth
             >
@@ -38,7 +43,7 @@ export default function SelectInput({ field, updateResults }: { field: SelectInp
                     <MenuItem key={index} value={option.id}>{option.label}</MenuItem>
                 ))}
             </Select>
-            {field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>}
+            {error ? (field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>): null}
         </FormControl>
     )
 }

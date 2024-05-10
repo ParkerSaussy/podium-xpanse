@@ -8,13 +8,8 @@ import RenderForms from '../components/RenderForms';
 import Spinner from '../components/Spinner';
 
 export default function FormListPage() {
-    const [forms, setForms] = useState<FormConfig[] | null>(null)
-    const [formsError, setFormsError] = useState<string | null>(null)
-
-    // Only have this to print the forms object out after it's pulled
-    useEffect(() => {
-        console.log(forms);
-    }, [forms])
+    const [forms, setForms] = useState<FormConfig[] | null>(null);
+    const [formsError, setFormsError] = useState<string | null>(null);
 
     useEffect(() => {
         const getData = async () => {

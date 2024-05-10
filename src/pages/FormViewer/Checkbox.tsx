@@ -10,7 +10,11 @@ import {
     FormHelperText
 } from "@mui/material";
 
-export default function Checkbox({ field, updateResults }: { field: CheckboxField, updateResults: (id: string, value: any) => void }) {
+export default function Checkbox({ field, error, updateResults }: { 
+    field: CheckboxField, 
+    error?: boolean, 
+    updateResults: (id: string, value: any) => void 
+}) {
     const boxesSelected = useRef<any>({});
 
     /* 
@@ -48,7 +52,7 @@ export default function Checkbox({ field, updateResults }: { field: CheckboxFiel
                     />
                 ))}
             </FormGroup>
-            {field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>}
+            {error ? (field.errorMsg && <FormHelperText>{field.errorMsg}</FormHelperText>): null}
         </FormControl>
     )
 }

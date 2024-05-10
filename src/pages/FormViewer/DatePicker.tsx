@@ -2,7 +2,11 @@ import { DateInputField } from "../../lib/interfaces"
 import { DatePicker as MUIDatePicker } from "@mui/x-date-pickers"
 import dayjs from "dayjs"
 
-export default function DatePicker({ field, updateResults }: { field: DateInputField, updateResults: (id: string, value: any) => void }) {
+export default function DatePicker({ field, error, updateResults }: { 
+    field: DateInputField, 
+    error?: boolean, 
+    updateResults: (id: string, value: any) => void 
+}) {
     const onChangeDate = (e: dayjs.Dayjs | null) => {
         const formatted = e?.format('MM-DD-YYYY') || null;
         if (formatted) updateResults(field.id, formatted);
@@ -17,7 +21,7 @@ export default function DatePicker({ field, updateResults }: { field: DateInputF
                 slotProps={{
                     textField: {
                         required: field.required,
-                        ...(field.errorMsg && { 
+                        ...((field.errorMsg && error) && { 
                             helperText: field.errorMsg 
                         })
                     }

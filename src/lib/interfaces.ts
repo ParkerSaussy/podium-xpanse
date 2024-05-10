@@ -61,6 +61,7 @@ export interface DateInputField extends FormField {
     validator?: object;
 }
 
+// This will just never be used - was planning on it but never got to it.
 export interface FieldArrayInput extends FormField {
     type: 'fieldArray';
     defaultValue?: Array<string>;

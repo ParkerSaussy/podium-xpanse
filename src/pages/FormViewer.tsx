@@ -13,7 +13,8 @@ import styles from './FormViewer.module.css';
 import { validateFieldEntry } from '../lib/validation';
 
 export default function FormViewerPage() {
-    const results = useRef<any>({});
+    const results = useRef<{ [key: string]: any }>({}); // Wish we didn't have to use any here but as of making this I haven't confirmed the returned types yet
+    const [fieldErrors, setFieldErrors] = useState<{ [key: string]: boolean }>({});
     const [form, setForm] = useState<FormConfig | null>(null);
     const [formError, setFormError] = useState<string | null>(null);
     const [showJson, setShowJson] = useState<boolean>(false);
@@ -22,15 +23,17 @@ export default function FormViewerPage() {
     const params = useParams();
     const formId = params?.formId;
 
-    // Initialize the results object with default values
+    // Initialize the results & errors objects with default values - ONCE
     useEffect(() => {
         if (form) {
-            // let newResults = results.current;
             let newResults = results.current;
+            let newErrors:{ [key: string]: boolean } = {};
             form.fields.forEach(field => {
                 newResults[field.id] = field.defaultValue || null;
+                newErrors[field.id] = false;
             })
             results.current = newResults;
+            setFieldErrors(newErrors);
         }
     }, [form]);
     
@@ -99,6 +102,7 @@ export default function FormViewerPage() {
                             <FieldRenderer 
                                 key={index} 
                                 field={field} 
+                                fieldErrors={fieldErrors}
                                 updateResults={(id: string, value: any) => updateResults(id, value)}
                             />) )}
                         {/* Submit Button */}
