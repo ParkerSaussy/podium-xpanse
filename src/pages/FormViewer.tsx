@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axios from 'axios';
@@ -38,6 +38,12 @@ export default function FormViewerPage() {
         getData();
     }, [formId]);
 
+    const onSubmit = (event: FormEvent) => {
+        // Form submission logic here
+        event.preventDefault();
+        console.log('Form submitted!');
+    }
+
     return (
         <>
             <BackButton href={'/'} />
@@ -48,7 +54,7 @@ export default function FormViewerPage() {
                 {formError && <div>{formError}</div>}
                 {/* Form loaded */}
                 {form && !formError && (
-                    <div className={styles['form-container']}>
+                    <form onSubmit={onSubmit} className={styles['form-container']}>
                         {/* Form Header */}
                         <h1>{`${form.name}:`}</h1>
                         <hr className={styles['divider']} />
@@ -61,9 +67,9 @@ export default function FormViewerPage() {
                         <hr className={styles['divider']} />
                         {/* Submit Button */}
                         <div>
-                            <Button variant="contained" size="large" color="primary">Submit Form</Button>
+                            <Button type='submit' variant="contained" size="large" color="primary">Submit Form</Button>
                         </div>
-                    </div>
+                    </form>
                 )}
             </div>
         </>

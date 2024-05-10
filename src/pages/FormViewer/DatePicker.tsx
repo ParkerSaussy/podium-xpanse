@@ -7,12 +7,17 @@ export default function DatePicker({ field }: { field: DateInputField }) {
         <div>
             <MUIDatePicker 
                 label={field.label} 
-                defaultValue={dayjs()} 
-                slotProps={field.helperText ? {
+                // defaultValue={dayjs()} 
+                slotProps={{
                     textField: {
-                        helperText: field.helperText,
+                        ...(
+                            field.helperText && {
+                                helperText: field.helperText
+                            }
+                        ),
+                        required: field.required,
                     }
-                }:{}} 
+                }} 
             />
         </div>
     )

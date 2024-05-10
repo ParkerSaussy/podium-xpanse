@@ -13,14 +13,6 @@
     transition: 0.3s ease;
 }
 
-.field-label {
-    font-size: calc(8px + 2vmin);
-}
-
-.field-required-error {
-    box-shadow: 0 0 3px 0 red;
-}
-
 .mui-input {
     background-color: var(--xpanse-white);
 }

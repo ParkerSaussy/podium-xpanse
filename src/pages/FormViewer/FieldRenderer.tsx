@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 import { 
     FormField,
     TextInputField, 
@@ -18,8 +16,6 @@ import SelectInput from "./SelectInput";
 import DatePicker from "./DatePicker";
 
 export default function FieldRenderer({field}: {field: FormField }) {
-    const [fieldError, setFieldError] = useState<boolean>(false)
-
     const getFieldComponent = (type: string) => {
         /* 
         It's safe to do these so long as the types match, which they always should unless somebody corrupts the DB 
@@ -38,12 +34,13 @@ export default function FieldRenderer({field}: {field: FormField }) {
             case 'date':
                 return <DatePicker field={field as DateInputField} />
             default:
+                console.error(`Field type ${type} not found`);
                 return <></>
         };
     }
 
     return (
-        <div className={`${styles['field-renderer']} ${fieldError && styles['field-required-error']}`}>
+        <div className={`${styles['field-renderer']}`}>
             {getFieldComponent(field.type)}
         </div>
     )

@@ -1,7 +1,12 @@
 import { CheckboxField } from "../../lib/interfaces";
 
-import {Checkbox as MUICheckbox} from "@mui/material";
-import { FormGroup, FormControl, FormControlLabel, FormLabel } from "@mui/material";
+import { 
+    Checkbox as MUICheckbox, 
+    FormGroup, 
+    FormControl, 
+    FormControlLabel, 
+    FormLabel 
+} from "@mui/material";
 
 export default function Checkbox({ field }: { field: CheckboxField}) {
     return (
