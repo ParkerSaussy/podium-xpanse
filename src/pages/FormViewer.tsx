@@ -38,12 +38,18 @@ export default function FormViewerPage() {
         getData();
     }, [formId]);
 
+    /* Function to update a results object based on data */
+    const updateResults = (fieldId: string, value: any) => {
+        console.log(`Field ${fieldId} updated with value: ${value.toString()}`)
+    }
+
     /* 
     Elected to handle all validation in this function.
     Using zero of the html form validation tools.
     */
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
+        console.log(form?.fields)
 
         console.log('Form submitted!');
     }
@@ -51,7 +57,7 @@ export default function FormViewerPage() {
     return (
         <>
             <BackButton href={'/'} />
-            <div className={`page-centered ${styles['form-viewer-fullpage']}`}>
+            <Box className={`page-centered ${styles['form-viewer-fullpage']}`}>
                 {/* Loading, no form or error yet */}
                 {(!form && !formError) && <Spinner size='large' />}
                 {/* Form failed to load */}
@@ -62,12 +68,17 @@ export default function FormViewerPage() {
                         {/* Form Header */}
                         <h1>{`${form.name}:`}</h1>
                         {/* Form Field data is passed field-by-field to the FieldRenderer component, whereafter it is past based on type. */}
-                        {form.fields.map((field, index) => <FieldRenderer key={index} field={field} /> )}
+                        {form.fields.map((field, index) => (
+                            <FieldRenderer 
+                                key={index} 
+                                field={field} 
+                                updateResults={(id: string, value: any) => updateResults(id, value)}
+                            />) )}
                         {/* Submit Button */}
                         <Button type='submit' variant="contained" size="large" color="primary">Submit Form</Button>
                     </Box>
                 )}
-            </div>
+            </Box>
         </>
     );
 }

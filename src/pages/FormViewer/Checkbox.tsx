@@ -9,7 +9,7 @@ import {
     FormHelperText
 } from "@mui/material";
 
-export default function Checkbox({ field }: { field: CheckboxField}) {
+export default function Checkbox({ field, updateResults }: { field: CheckboxField, updateResults: (id: string, value: any) => void }) {
     return (
         <FormControl sx={{ textAlign: 'left' }}>
             <FormLabel>{field.label}</FormLabel>
@@ -21,6 +21,7 @@ export default function Checkbox({ field }: { field: CheckboxField}) {
                             <MUICheckbox color="primary"/>
                         }
                         label={option.label}
+                        
                     />
                 ))}
             </FormGroup>

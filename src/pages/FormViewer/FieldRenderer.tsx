@@ -20,7 +20,7 @@ import DatePicker from "./DatePicker";
 // MUI
 import { Box } from "@mui/material";
 
-export default function FieldRenderer({field}: {field: FormField }) {
+export default function FieldRenderer({ field, updateResults }: { field: FormField, updateResults: (id: string, value: any) => void }) {
     const getFieldComponent = (type: string) => {
         /* 
         It's safe to do these so long as the types match, which they always should unless somebody corrupts the DB 
@@ -28,16 +28,16 @@ export default function FieldRenderer({field}: {field: FormField }) {
         Will add a checker function later on, time permitting.
         */
         switch (type) {
-            case 'text':
-                return <TextInput field={field as TextInputField} />
+            case 'text': 
+                return (<TextInput field={field as TextInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             case 'number':
-                return <NumberInput field={field as NumberInputField} />
+                return (<NumberInput field={field as NumberInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             case 'checkbox':
-                return <Checkbox field={field as CheckboxField} />
+                return (<Checkbox field={field as CheckboxField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             case 'select':
-                return <SelectInput field={field as SelectInputField} />
+                return (<SelectInput field={field as SelectInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             case 'date':
-                return <DatePicker field={field as DateInputField} />
+                return (<DatePicker field={field as DateInputField} updateResults={(id: string, value: any) => updateResults(id, value)} />)
             default:
                 console.error(`Field type ${type} not found`);
                 return <></>

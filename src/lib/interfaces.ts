@@ -51,17 +51,20 @@ export interface CheckboxField extends FormField {
 
 export interface SelectInputField extends FormField {
     type: 'select';
+    defaultValue?: string;
     options: SelectorOption[];
     validator?: object;
 }
 
 export interface DateInputField extends FormField {
     type: 'date';
+    defaultValue?: string;
     validator?: object;
 }
 
 export interface FieldArrayInput extends FormField {
     type: 'fieldArray';
+    defaultValue?: Array<string>;
     validator?: object;
 }
 

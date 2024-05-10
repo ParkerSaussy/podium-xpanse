@@ -9,8 +9,14 @@ import {
     FormHelperText 
 } from "@mui/material";
 
-export default function SelectInput({ field }: { field: SelectInputField }) {
+export default function SelectInput({ field, updateResults }: { field: SelectInputField, updateResults: (id: string, value: any) => void }) {
     const [value, setValue] = useState('')
+
+    const onSelectOption = (e: any) => {
+        const value = e.target.value;
+        console.log(value)
+        setValue(value)
+    }
 
     return (
         <FormControl>
@@ -22,7 +28,7 @@ export default function SelectInput({ field }: { field: SelectInputField }) {
                 required={field.required}
                 displayEmpty
                 label={field.label}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => onSelectOption(e)}
                 fullWidth
             >
                 <MenuItem value="" disabled>{field.placeholder || 'Select an option...'}</MenuItem>
